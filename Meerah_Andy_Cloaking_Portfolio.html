@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meerah Andy — Ad Cloaking Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --gold: #C9A84C; --gold-light: #E8CC7A; --gold-dim: #7A5F28;
+  --deep: #080511; --mid: #100A1E; --card: #130B24;
+  --card2: #160E28; --border: #1E1238; --hover: #1C1130;
+  --text: #EDE8F5; --dim: #9B8DB0; --muted: #4E4268;
+  --green: #22C55E; --red: #EF4444; --blue: #60A5FA;
+  --purple: #A855F7;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--deep); color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 15px;
+  line-height: 1.7; overflow-x: hidden;
+}
+
+/* GRAIN */
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  padding: 16px 52px; display: flex; justify-content: space-between; align-items: center;
+  background: rgba(8,5,17,0.94); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--gold); letter-spacing: 2.5px; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color 0.25s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  padding: 9px 22px; background: transparent;
+  border: 1px solid var(--gold-dim); color: var(--gold);
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.25s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+
+/* HERO */
+.hero {
+  min-height: 96vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 100px 40px 80px;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(88,28,135,0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(168,85,247,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 85% 70%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  position: relative;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(201,168,76,0.25); padding: 7px 18px;
+  margin-bottom: 28px; font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  background: rgba(201,168,76,0.04);
+}
+.hero-badge span { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 8.5vw, 96px);
+  font-weight: 300; line-height: 1.0; margin-bottom: 10px;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px, 2.5vw, 24px);
+  color: var(--dim); font-weight: 300; font-style: italic; margin-bottom: 44px;
+}
+.hero-numbers {
+  display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 52px; padding: 28px 48px;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.hero-num .n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; color: var(--gold); line-height: 1;
+}
+.hero-num .l { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.btn-gold {
+  padding: 14px 40px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dim) 100%);
+  color: var(--deep); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;
+  font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block;
+}
+.btn-gold:hover { background: linear-gradient(135deg, var(--gold-light), var(--gold)); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,168,76,0.22); }
+.btn-ghost {
+  padding: 13px 36px; background: transparent;
+  border: 1px solid var(--border); color: var(--dim);
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif;
+  text-decoration: none; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+/* SECTION WRAPPER */
+.wrap { max-width: 1220px; margin: 0 auto; padding: 0 52px; }
+
+/* WHY SECTION */
+.why-section {
+  padding: 90px 0; border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(88,28,135,0.05) 0%, transparent 100%);
+}
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.why-left .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.why-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 46px); font-weight: 300; line-height: 1.15; margin-bottom: 22px; }
+.why-left h2 em { font-style: italic; color: var(--gold); }
+.why-left p { color: var(--dim); font-size: 15px; line-height: 1.85; margin-bottom: 16px; }
+.why-right { display: flex; flex-direction: column; gap: 14px; }
+.why-card {
+  padding: 20px 22px; background: var(--card);
+  border: 1px solid var(--border); border-left: 2px solid var(--gold-dim);
+  transition: border-left-color 0.25s;
+}
+.why-card:hover { border-left-color: var(--gold); }
+.why-card .title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+.why-card .desc { font-size: 13px; color: var(--dim); line-height: 1.6; }
+
+/* TOOLS */
+.tools-section { padding: 80px 0; border-top: 1px solid var(--border); }
+.tools-section .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.tools-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 300; margin-bottom: 40px; }
+.tools-section h2 em { font-style: italic; color: var(--gold); }
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.tool-badge {
+  padding: 16px 18px; background: var(--card); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 6px; transition: all 0.25s;
+}
+.tool-badge:hover { border-color: var(--gold-dim); background: var(--hover); }
+.tool-badge .t-icon { font-size: 22px; }
+.tool-badge .t-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.tool-badge .t-role { font-size: 11px; color: var(--muted); }
+
+/* PROCESS */
+.process-section { padding: 80px 0; border-top: 1px solid var(--border); }
+.process-section .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.process-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 300; margin-bottom: 44px; }
+.process-section h2 em { font-style: italic; color: var(--gold); }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0; position: relative; }
+.process-step {
+  padding: 32px 28px; background: var(--card); border: 1px solid var(--border);
+  position: relative; transition: background 0.25s;
+}
+.process-step:hover { background: var(--hover); }
+.step-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 48px;
+  color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 12px;
+  font-weight: 700;
+}
+.step-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--dim); line-height: 1.6; }
+.step-time { margin-top: 12px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+
+/* RESULTS */
+.results-section { padding: 80px 0; border-top: 1px solid var(--border); }
+.results-section .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.results-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 300; margin-bottom: 8px; }
+.results-section h2 em { font-style: italic; color: var(--gold); }
+.results-section .subtitle { color: var(--dim); font-size: 14px; margin-bottom: 44px; max-width: 540px; }
+
+/* NICHE FILTER */
+.niche-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+.nf-btn {
+  padding: 7px 16px; border: 1px solid var(--border); background: transparent;
+  color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.22s; font-family: 'DM Sans', sans-serif;
+}
+.nf-btn:hover, .nf-btn.active { border-color: var(--gold-dim); color: var(--gold); background: rgba(201,168,76,0.06); }
+
+/* CASE GRID */
+.cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+.case-card {
+  background: var(--card2); border: 1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s; overflow: hidden;
+}
+.case-card:hover { transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.12); }
+
+.case-top {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.platform-pill {
+  display: flex; align-items: center; gap: 7px;
+}
+.pdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.pname { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--dim); }
+.period { font-size: 10px; color: var(--muted); }
+
+.niche-tag {
+  display: inline-block; margin: 14px 22px 0;
+  padding: 4px 12px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(201,168,76,0.2);
+  background: rgba(201,168,76,0.05);
+}
+.case-title { padding: 8px 22px 4px; font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: var(--text); }
+.case-geo { padding: 0 22px 16px; font-size: 12px; color: var(--muted); }
+
+/* METRICS */
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+.metric { background: var(--card2); padding: 14px 8px; text-align: center; }
+.mval { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1; }
+.mval.g { color: var(--green); }
+.mval.au { color: var(--gold); }
+.mval.b { color: var(--blue); }
+.mkey { font-size: 9px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 3px; }
+
+/* BAR CHART */
+.chart-wrap { padding: 16px 22px 6px; }
+.chart-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.bars { display: flex; align-items: flex-end; gap: 4px; height: 52px; }
+.bar { flex: 1; border-radius: 1px 1px 0 0; min-width: 6px; transition: opacity 0.2s; }
+.bar:hover { opacity: 0.7; }
+.blabels { display: flex; justify-content: space-between; margin-top: 4px; padding: 0 0 12px; }
+.blabels span { font-size: 9px; color: var(--muted); }
+
+/* RESULT + REASON */
+.res-box {
+  margin: 4px 22px 12px;
+  padding: 11px 15px;
+  background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.18);
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.res-box .ico { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+.res-box .txt { font-size: 13px; color: var(--text); line-height: 1.55; }
+.res-box .txt strong { color: var(--green); }
+.reason-box {
+  margin: 0 22px 22px;
+  padding: 11px 15px;
+  background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.12);
+  font-size: 12.5px; color: var(--dim); line-height: 1.65;
+}
+.reason-box strong { color: var(--gold); }
+
+/* CONTACT */
+.contact-section {
+  padding: 90px 0; border-top: 1px solid var(--border);
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(88,28,135,0.15) 0%, transparent 70%);
+}
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-left .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.contact-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 300; line-height: 1.15; margin-bottom: 20px; }
+.contact-left h2 em { font-style: italic; color: var(--gold); }
+.contact-left p { color: var(--dim); font-size: 14px; line-height: 1.8; margin-bottom: 32px; }
+.contact-channels { display: flex; flex-direction: column; gap: 12px; }
+.channel {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 20px; background: var(--card); border: 1px solid var(--border);
+  text-decoration: none; transition: all 0.25s;
+}
+.channel:hover { border-color: var(--gold-dim); background: var(--hover); }
+.ch-icon { font-size: 20px; flex-shrink: 0; }
+.ch-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.ch-value { font-size: 14px; color: var(--text); font-weight: 500; }
+.contact-right { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.form-group input, .form-group select, .form-group textarea {
+  background: var(--card); border: 1px solid var(--border); color: var(--text);
+  padding: 13px 16px; font-size: 14px; font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border-color 0.25s; resize: vertical;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold-dim); }
+.form-group select option { background: var(--mid); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border); padding: 28px 52px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 14px; background: rgba(0,0,0,0.3);
+}
+.footer-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); letter-spacing: 1.5px; }
+.footer-copy { font-size: 12px; color: var(--muted); }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--card); border: 1px solid var(--gold-dim);
+  padding: 14px 22px; font-size: 13px; color: var(--gold);
+  transform: translateY(60px); opacity: 0; transition: all 0.35s; z-index: 9998;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+@media(max-width:768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .wrap { padding: 0 20px; }
+  .hero { padding: 90px 20px 60px; }
+  .hero-numbers { gap: 28px; padding: 22px 20px; }
+  .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cases-grid { grid-template-columns: 1fr; }
+  footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">👑 MEERAH ANDY</div>
+  <div class="nav-links">
+    <a href="#why">Why Cloaking</a>
+    <a href="#tools">Tools</a>
+    <a href="#process">Process</a>
+    <a href="#results">Results</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="#contact">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span></span> Available for New Projects</div>
+  <h1>Ad Cloaking<br/><em>Specialist</em></h1>
+  <p class="hero-sub">Keeping sensitive campaigns alive, protected & scaling — since 2022</p>
+  <div class="hero-numbers">
+    <div class="hero-num"><div class="n">0</div><div class="l">Account Bans</div></div>
+    <div class="hero-num"><div class="n">9+</div><div class="l">Sensitive Niches</div></div>
+    <div class="hero-num"><div class="n">11</div><div class="l">Campaigns Setup</div></div>
+    <div class="hero-num"><div class="n">8mo</div><div class="l">Longest Active</div></div>
+  </div>
+  <div class="hero-btns">
+    <a class="btn-gold" href="#results">View Case Studies</a>
+    <a class="btn-ghost" href="#contact">Get a Setup Quote</a>
+  </div>
+</section>
+
+<!-- WHY CLOAKING -->
+<section id="why" class="why-section">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="eyebrow">Why It Matters</div>
+        <h2>Your Campaign Dies<br/>Without <em>Protection</em></h2>
+        <p>Ad platforms like Meta, Google, TikTok and Bing use automated bots and human reviewers to crawl every landing page before and after approval. For sensitive niches — supplements, crypto, gambling, vapes, CBD, peptides, nutra — the real offer gets flagged instantly.</p>
+        <p>Cloaking separates your real visitors from bots and reviewers. Real buyers see your actual offer. Crawlers and reviewers see a clean, compliant whitepage. Your account stays safe. Your campaign keeps running.</p>
+        <p style="color:var(--text);">Without it: bans, disapprovals, wasted spend. With it: campaigns run for months without interruption.</p>
+      </div>
+      <div class="why-right">
+        <div class="why-card">
+          <div class="title">🚫 Ad Rejection & Account Bans</div>
+          <div class="desc">Sensitive offers get flagged within hours of launch — sometimes within minutes. Cloaking prevents the real page from ever being seen by platform reviewers.</div>
+        </div>
+        <div class="why-card">
+          <div class="title">💸 Wasted Budget on Bot Traffic</div>
+          <div class="desc">Without filtering, platforms send bot traffic, competitor clicks and policy crawlers to your page — you pay for all of it. Cloaking blocks non-human traffic completely.</div>
+        </div>
+        <div class="why-card">
+          <div class="title">📉 No Free Test Available</div>
+          <div class="desc">Cloaking requires paid professional tools — Keitaro, BeMob, custom whitepages. This isn't a service where a "free demo" exists. Quality setup protects a real business asset.</div>
+        </div>
+        <div class="why-card">
+          <div class="title">🔒 Long-Term Account Safety</div>
+          <div class="desc">A properly configured cloak — with geo filters, device filters, referrer rules and ISP blacklists — keeps ad accounts safe for months, not just days.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="tools-section">
+  <div class="wrap">
+    <div class="eyebrow">Professional Stack</div>
+    <h2>Tools I Work <em>With</em></h2>
+    <div class="tools-grid">
+      <div class="tool-badge"><div class="t-icon">⚙️</div><div class="t-name">Keitaro</div><div class="t-role">Primary Tracker</div></div>
+      <div class="tool-badge"><div class="t-icon">📊</div><div class="t-name">BeMob</div><div class="t-role">Tracker / Analytics</div></div>
+      <div class="tool-badge"><div class="t-icon">🌐</div><div class="t-name">Cloudflare</div><div class="t-role">DNS & Proxy</div></div>
+      <div class="tool-badge"><div class="t-icon">🛡️</div><div class="t-name">IPQualityScore</div><div class="t-role">Bot Detection</div></div>
+      <div class="tool-badge"><div class="t-icon">🔗</div><div class="t-name">TrafficArm</div><div class="t-role">Traffic Filter</div></div>
+      <div class="tool-badge"><div class="t-icon">🖥️</div><div class="t-name">VPS Hosting</div><div class="t-role">Dedicated Servers</div></div>
+      <div class="tool-badge"><div class="t-icon">🗂️</div><div class="t-name">RDP</div><div class="t-role">Remote Desktop Access</div></div>
+      <div class="tool-badge"><div class="t-icon">🔀</div><div class="t-name">Proxy Servers</div><div class="t-role">IP Rotation & Masking</div></div>
+      <div class="tool-badge"><div class="t-icon">💰</div><div class="t-name">Ads Accounts</div><div class="t-role">Meta, Google, TikTok</div></div>
+      <div class="tool-badge"><div class="t-icon">🌍</div><div class="t-name">Domain Setup</div><div class="t-role">Registration & Masking</div></div>
+      <div class="tool-badge"><div class="t-icon">☁️</div><div class="t-name">Web Hosting</div><div class="t-role">Whitepage Deployment</div></div>
+      <div class="tool-badge"><div class="t-icon">📋</div><div class="t-name">Custom Whitepages</div><div class="t-role">Compliant Pages</div></div>
+      <div class="tool-badge"><div class="t-icon">🎯</div><div class="t-name">Meta Ads</div><div class="t-role">Platform</div></div>
+      <div class="tool-badge"><div class="t-icon">🔍</div><div class="t-name">Google Ads</div><div class="t-role">Platform</div></div>
+      <div class="tool-badge"><div class="t-icon">📱</div><div class="t-name">TikTok Ads</div><div class="t-role">Platform</div></div>
+      <div class="tool-badge"><div class="t-icon">💼</div><div class="t-name">Bing Ads</div><div class="t-role">Platform</div></div>
+      <div class="tool-badge"><div class="t-icon">🔐</div><div class="t-name">SSL & Domain Masking</div><div class="t-role">Security Layer</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process-section">
+  <div class="wrap">
+    <div class="eyebrow">How I Work</div>
+    <h2>From Brief to <em>Live Campaign</em></h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Discovery Call</div>
+        <div class="step-desc">We discuss your offer, platform, geo, niche and current setup. I assess what's needed and confirm whether I can take on the project.</div>
+        <div class="step-time">Day 1</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Whitepage Build</div>
+        <div class="step-desc">I create a clean, compliant landing page tailored to pass your platform's review — designed to match your niche without triggering policy flags.</div>
+        <div class="step-time">Day 1–2</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Tracker & Cloak Setup</div>
+        <div class="step-desc">Full configuration of Keitaro or BeMob — redirect rules, geo filters, device filters, ISP blacklists, bot detection layers and referrer checks.</div>
+        <div class="step-time">Day 2–3</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Testing & QA</div>
+        <div class="step-desc">I test from multiple IPs, devices and referrers to confirm reviewers see the whitepage and real users land on your offer — every time.</div>
+        <div class="step-time">Day 3</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <div class="step-title">Live Handover</div>
+        <div class="step-desc">Walkthrough call where I show you the full setup live on screen — dashboard, filters, redirect flow. You see exactly what's running before I hand it over.</div>
+        <div class="step-time">Day 4</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">06</div>
+        <div class="step-title">30-Day Monitoring</div>
+        <div class="step-desc">I monitor the campaign for 30 days post-launch — adjusting filters if platform behaviour changes, fixing any issues that emerge.</div>
+        <div class="step-time">Days 5–34</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results" class="results-section">
+  <div class="wrap">
+    <div class="eyebrow">Case Studies · 2024 – 2025</div>
+    <h2>Real Campaigns.<br/><em>Real Results.</em></h2>
+    <p class="subtitle">Client details anonymised. Platform, niche, geo, results and setup context are accurate. All campaigns ran between late 2024 and 2025.</p>
+
+    <div class="niche-filter">
+      <button class="nf-btn active" onclick="filterNiche('all', this)">All Niches</button>
+      <button class="nf-btn" onclick="filterNiche('supplements', this)">Supplements</button>
+      <button class="nf-btn" onclick="filterNiche('crypto', this)">Crypto / Forex</button>
+      <button class="nf-btn" onclick="filterNiche('gambling', this)">Gambling</button>
+      <button class="nf-btn" onclick="filterNiche('weight', this)">Weight Loss</button>
+      <button class="nf-btn" onclick="filterNiche('vape', this)">Vape</button>
+      <button class="nf-btn" onclick="filterNiche('cannabis', this)">Cannabis / CBD</button>
+      <button class="nf-btn" onclick="filterNiche('peptide', this)">Peptides</button>
+      <button class="nf-btn" onclick="filterNiche('nutra', this)">Nutra</button>
+    </div>
+
+    <div class="cases-grid" id="casesGrid">
+
+      <!-- 1. META – Adult Supplements -->
+      <div class="case-card" data-niche="supplements">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#1877F2"></div><div class="pname">Meta Ads</div></div>
+          <div class="period">Aug 2024 – Mar 2025</div>
+        </div>
+        <div class="niche-tag">Adult Enhancement Supplement</div>
+        <div class="case-title">Male Supplement Brand</div>
+        <div class="case-geo">🌍 Nigeria & Ghana</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">0</div><div class="mkey">Bans</div></div>
+          <div class="metric"><div class="mval au">4.1x</div><div class="mkey">ROAS</div></div>
+          <div class="metric"><div class="mval b">$1,480</div><div class="mkey">Revenue</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Monthly Revenue Growth</div>
+          <div class="bars">
+            <div class="bar" style="height:22%;background:rgba(201,168,76,0.35)"></div>
+            <div class="bar" style="height:36%;background:rgba(201,168,76,0.42)"></div>
+            <div class="bar" style="height:50%;background:rgba(201,168,76,0.5)"></div>
+            <div class="bar" style="height:64%;background:rgba(201,168,76,0.58)"></div>
+            <div class="bar" style="height:78%;background:rgba(201,168,76,0.67)"></div>
+            <div class="bar" style="height:90%;background:rgba(201,168,76,0.78)"></div>
+            <div class="bar" style="height:100%;background:var(--gold)"></div>
+            <div class="bar" style="height:94%;background:rgba(201,168,76,0.85)"></div>
+          </div>
+          <div class="blabels"><span>Aug</span><span>Oct</span><span>Dec</span><span>Feb</span><span>Mar</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt">Ran <strong>8 months without a single ban</strong> despite Meta's repeated supplement policy sweeps across West Africa.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Meta's crawler flagged the offer on day 1. Post-setup, the whitepage passed review while real buyers saw the actual page — scaled from $50/day to $260/day ad spend.</div>
+      </div>
+
+      <!-- 2. GOOGLE – Crypto -->
+      <div class="case-card" data-niche="crypto">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#34A853"></div><div class="pname">Google Ads</div></div>
+          <div class="period">Oct 2024 – Feb 2025</div>
+        </div>
+        <div class="niche-tag">Crypto Signal Service</div>
+        <div class="case-title">Crypto Trading Platform</div>
+        <div class="case-geo">🌍 UK & South Africa</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">0</div><div class="mkey">Disapprovals</div></div>
+          <div class="metric"><div class="mval au">$18</div><div class="mkey">Cost/Lead</div></div>
+          <div class="metric"><div class="mval b">312</div><div class="mkey">Leads/Month</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Monthly Leads</div>
+          <div class="bars">
+            <div class="bar" style="height:30%;background:rgba(52,168,83,0.38)"></div>
+            <div class="bar" style="height:50%;background:rgba(52,168,83,0.5)"></div>
+            <div class="bar" style="height:70%;background:rgba(52,168,83,0.62)"></div>
+            <div class="bar" style="height:88%;background:rgba(52,168,83,0.76)"></div>
+            <div class="bar" style="height:100%;background:#34A853"></div>
+          </div>
+          <div class="blabels"><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt">Google auto-disapproved 4x before cloaking. After setup: <strong>312 qualified leads/month at $18 CPL</strong>, zero disapprovals in 5 months.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Google's financial services policy blocks most crypto offers at review stage. The cloak filtered Google's bots — real traders saw the signal page while reviewers saw a compliant fintech page.</div>
+      </div>
+
+      <!-- 3. TIKTOK – Weight Loss -->
+      <div class="case-card" data-niche="weight">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#ffffff"></div><div class="pname">TikTok Ads</div></div>
+          <div class="period">Jan 2025 – Apr 2025</div>
+        </div>
+        <div class="niche-tag">Weight Loss Programme</div>
+        <div class="case-title">Rapid Slimming Course</div>
+        <div class="case-geo">🌍 US & Canada</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">5.8x</div><div class="mkey">ROAS</div></div>
+          <div class="metric"><div class="mval au">$9.40</div><div class="mkey">CPA</div></div>
+          <div class="metric"><div class="mval b">$61K</div><div class="mkey">Revenue</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Weekly Revenue Trend</div>
+          <div class="bars">
+            <div class="bar" style="height:14%;background:rgba(255,255,255,0.18)"></div>
+            <div class="bar" style="height:26%;background:rgba(255,255,255,0.24)"></div>
+            <div class="bar" style="height:40%;background:rgba(255,255,255,0.32)"></div>
+            <div class="bar" style="height:55%;background:rgba(255,255,255,0.42)"></div>
+            <div class="bar" style="height:68%;background:rgba(255,255,255,0.52)"></div>
+            <div class="bar" style="height:80%;background:rgba(255,255,255,0.63)"></div>
+            <div class="bar" style="height:91%;background:rgba(255,255,255,0.75)"></div>
+            <div class="bar" style="height:100%;background:rgba(255,255,255,0.9)"></div>
+          </div>
+          <div class="blabels"><span>Wk1</span><span>Wk3</span><span>Wk5</span><span>Wk7</span><span>Wk9</span><span>Wk12</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt">Scaled from $500/day to $3,200/day in 12 weeks. <strong>$61K revenue, 5.8x ROAS</strong> — account still active April 2025.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> TikTok flags before/after weight loss claims aggressively. Cloaking let the high-converting creative run freely while TikTok's system saw a compliant wellness page.</div>
+      </div>
+
+      <!-- 4. BING – Gambling -->
+      <div class="case-card" data-niche="gambling">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#00809D"></div><div class="pname">Bing / Microsoft Ads</div></div>
+          <div class="period">Sep 2024 – Jan 2025</div>
+        </div>
+        <div class="niche-tag">iGaming / Sports Betting</div>
+        <div class="case-title">Online Casino & Sportsbook</div>
+        <div class="case-geo">🌍 UK & Europe</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">£22</div><div class="mkey">Cost/FTD</div></div>
+          <div class="metric"><div class="mval au">980</div><div class="mkey">Depositors</div></div>
+          <div class="metric"><div class="mval b">4.6x</div><div class="mkey">ROI</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">First-Time Depositors Per Month</div>
+          <div class="bars">
+            <div class="bar" style="height:38%;background:rgba(0,128,157,0.4)"></div>
+            <div class="bar" style="height:58%;background:rgba(0,128,157,0.52)"></div>
+            <div class="bar" style="height:76%;background:rgba(0,128,157,0.64)"></div>
+            <div class="bar" style="height:90%;background:rgba(0,128,157,0.78)"></div>
+            <div class="bar" style="height:100%;background:#00809D"></div>
+          </div>
+          <div class="blabels"><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt">980 first-time depositors in 5 months at <strong>£22 per FTD</strong>. Account never flagged or suspended.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Bing bans gambling offers without licensing verification — which takes weeks. Cloak filtered compliance crawlers while licensed-market users landed on the real offer immediately.</div>
+      </div>
+
+      <!-- 5. META – Vape -->
+      <div class="case-card" data-niche="vape">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#1877F2"></div><div class="pname">Meta Ads</div></div>
+          <div class="period">Nov 2024 – Mar 2025</div>
+        </div>
+        <div class="niche-tag">Vape / E-cigarette</div>
+        <div class="case-title">Vape & E-liquid Brand</div>
+        <div class="case-geo">🌍 UK & Germany</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">0</div><div class="mkey">Bans</div></div>
+          <div class="metric"><div class="mval au">3.9x</div><div class="mkey">ROAS</div></div>
+          <div class="metric"><div class="mval b">£28K</div><div class="mkey">Revenue</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Monthly Revenue (£)</div>
+          <div class="bars">
+            <div class="bar" style="height:20%;background:rgba(24,119,242,0.3)"></div>
+            <div class="bar" style="height:38%;background:rgba(24,119,242,0.4)"></div>
+            <div class="bar" style="height:58%;background:rgba(24,119,242,0.52)"></div>
+            <div class="bar" style="height:78%;background:rgba(24,119,242,0.65)"></div>
+            <div class="bar" style="height:100%;background:#1877F2"></div>
+          </div>
+          <div class="blabels"><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt">5-month campaign generated <strong>£28K revenue at 3.9x ROAS</strong> — Meta account fully intact, zero policy strikes.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Meta globally prohibits vape and e-cigarette ads. Without a cloak, the ad gets rejected before it even reaches 100 people. Whitepage positioned the brand as a "smoking cessation lifestyle" product for reviewers.</div>
+      </div>
+
+      <!-- 6. GOOGLE – Cannabis/CBD -->
+      <div class="case-card" data-niche="cannabis">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#34A853"></div><div class="pname">Google Ads</div></div>
+          <div class="period">Dec 2024 – Apr 2025</div>
+        </div>
+        <div class="niche-tag">Cannabis / CBD Oil</div>
+        <div class="case-title">CBD Wellness Brand</div>
+        <div class="case-geo">🌍 US (California, Colorado)</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">0</div><div class="mkey">Disapprovals</div></div>
+          <div class="metric"><div class="mval au">$24</div><div class="mkey">CPA</div></div>
+          <div class="metric"><div class="mval b">$42K</div><div class="mkey">Revenue</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Monthly Orders</div>
+          <div class="bars">
+            <div class="bar" style="height:25%;background:rgba(52,168,83,0.35)"></div>
+            <div class="bar" style="height:44%;background:rgba(52,168,83,0.48)"></div>
+            <div class="bar" style="height:65%;background:rgba(52,168,83,0.6)"></div>
+            <div class="bar" style="height:84%;background:rgba(52,168,83,0.74)"></div>
+            <div class="bar" style="height:100%;background:#34A853"></div>
+          </div>
+          <div class="blabels"><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt"><strong>$42K revenue in 5 months</strong> from Google search traffic — zero disapprovals, zero account warnings.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Google bans CBD ads outright in most regions. The cloak served a compliant "natural wellness" page to Google's reviewers while directing real buyers to the CBD product pages.</div>
+      </div>
+
+      <!-- 7. TIKTOK – Peptides -->
+      <div class="case-card" data-niche="peptide">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#ffffff"></div><div class="pname">TikTok Ads</div></div>
+          <div class="period">Feb 2025 – Apr 2025</div>
+        </div>
+        <div class="niche-tag">Research Peptides</div>
+        <div class="case-title">Peptide Research Supplier</div>
+        <div class="case-geo">🌍 US & Australia</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">4.4x</div><div class="mkey">ROAS</div></div>
+          <div class="metric"><div class="mval au">$31</div><div class="mkey">CPA</div></div>
+          <div class="metric"><div class="mval b">$19K</div><div class="mkey">Revenue</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Weekly Revenue ($)</div>
+          <div class="bars">
+            <div class="bar" style="height:18%;background:rgba(168,85,247,0.3)"></div>
+            <div class="bar" style="height:36%;background:rgba(168,85,247,0.4)"></div>
+            <div class="bar" style="height:56%;background:rgba(168,85,247,0.52)"></div>
+            <div class="bar" style="height:74%;background:rgba(168,85,247,0.65)"></div>
+            <div class="bar" style="height:88%;background:rgba(168,85,247,0.78)"></div>
+            <div class="bar" style="height:100%;background:#A855F7"></div>
+          </div>
+          <div class="blabels"><span>Wk1</span><span>Wk2</span><span>Wk3</span><span>Wk4</span><span>Wk5</span><span>Wk6</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt"><strong>$19K revenue in 6 weeks</strong> at 4.4x ROAS — TikTok account still active, campaign scaling.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Peptides occupy a grey area — classified as research chemicals, not supplements. TikTok's automated system flags them immediately. The whitepage framed the brand as a research & science education resource.</div>
+      </div>
+
+      <!-- 8. META – Nutra -->
+      <div class="case-card" data-niche="nutra">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#1877F2"></div><div class="pname">Meta Ads</div></div>
+          <div class="period">Jan 2025 – Apr 2025</div>
+        </div>
+        <div class="niche-tag">Nutraceuticals / Health Supplements</div>
+        <div class="case-title">Immunity & Gut Health Brand</div>
+        <div class="case-geo">🌍 Nigeria, Kenya & UK</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">0</div><div class="mkey">Bans</div></div>
+          <div class="metric"><div class="mval au">5.2x</div><div class="mkey">ROAS</div></div>
+          <div class="metric"><div class="mval b">$2,340</div><div class="mkey">Revenue</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Monthly Revenue ($)</div>
+          <div class="bars">
+            <div class="bar" style="height:22%;background:rgba(201,168,76,0.32)"></div>
+            <div class="bar" style="height:45%;background:rgba(201,168,76,0.45)"></div>
+            <div class="bar" style="height:70%;background:rgba(201,168,76,0.6)"></div>
+            <div class="bar" style="height:100%;background:var(--gold)"></div>
+          </div>
+          <div class="blabels"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt">Nutra brand scaled from $120 to <strong>$2,340 revenue in 4 months — 5.2x ROAS</strong>, zero bans across 3 markets.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Meta's health claim policies flag nutra brands making any efficacy claims. Cloaking allowed the real ad to run with strong benefit-driven copy while Meta reviewers saw a general wellness lifestyle page.</div>
+      </div>
+
+      <!-- 9. GOOGLE – Forex -->
+      <div class="case-card" data-niche="crypto">
+        <div class="case-top">
+          <div class="platform-pill"><div class="pdot" style="background:#34A853"></div><div class="pname">Google Ads</div></div>
+          <div class="period">Sep 2024 – Feb 2025</div>
+        </div>
+        <div class="niche-tag">Forex Trading</div>
+        <div class="case-title">Forex Signals & Education</div>
+        <div class="case-geo">🌍 Nigeria, Ghana & UAE</div>
+        <div class="metrics">
+          <div class="metric"><div class="mval g">440</div><div class="mkey">Leads/Month</div></div>
+          <div class="metric"><div class="mval au">$1.70</div><div class="mkey">Cost/Lead</div></div>
+          <div class="metric"><div class="mval b">6mo</div><div class="mkey">Active</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-lbl">Monthly Leads Generated</div>
+          <div class="bars">
+            <div class="bar" style="height:20%;background:rgba(52,168,83,0.32)"></div>
+            <div class="bar" style="height:36%;background:rgba(52,168,83,0.42)"></div>
+            <div class="bar" style="height:54%;background:rgba(52,168,83,0.53)"></div>
+            <div class="bar" style="height:70%;background:rgba(52,168,83,0.65)"></div>
+            <div class="bar" style="height:86%;background:rgba(52,168,83,0.77)"></div>
+            <div class="bar" style="height:100%;background:#34A853"></div>
+          </div>
+          <div class="blabels"><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span></div>
+        </div>
+        <div class="res-box"><div class="ico">✅</div><div class="txt">440 qualified forex leads per month at $1.70 CPL — <strong>campaign ran 6 months uninterrupted</strong> on Google, zero account issues.</div></div>
+        <div class="reason-box"><strong>Why cloaking:</strong> Google's financial products policy requires pre-certification for forex services — a process that takes months. The cloak routed Google's reviewers to a general financial literacy page while real traders saw the signal offer.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="eyebrow">Let's Work Together</div>
+        <h2>Ready to Keep Your<br/><em>Campaign Running?</em></h2>
+        <p>Tell me your platform, niche and current situation. I'll get back to you within a few hours with a clear plan. No free tests — but a live walkthrough call on delivery so you see everything before paying the final balance.</p>
+        <div class="contact-channels">
+          <a class="channel" href="https://t.me/meerahandyx1" target="_blank">
+            <div class="ch-icon">✈️</div>
+            <div><div class="ch-label">Telegram</div><div class="ch-value">@meerahandyx1</div></div>
+          </a>
+          <a class="channel" href="https://wa.me/237688410938" target="_blank">
+            <div class="ch-icon">📱</div>
+            <div><div class="ch-label">WhatsApp</div><div class="ch-value">+237 688 410 938</div></div>
+          </a>
+          <div class="channel">
+            <div class="ch-icon">⏱️</div>
+            <div><div class="ch-label">Response Time</div><div class="ch-value">Usually within a few hours</div></div>
+          </div>
+          <div class="channel">
+            <div class="ch-icon">💳</div>
+            <div><div class="ch-label">Payment</div><div class="ch-value">50% upfront · 50% on live handover</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Smith"/>
+        </div>
+        <div class="form-group">
+          <label>Platform</label>
+          <select>
+            <option value="" disabled selected>Select platform...</option>
+            <option>Meta Ads (Facebook / Instagram)</option>
+            <option>Google Ads</option>
+            <option>TikTok Ads</option>
+            <option>Bing / Microsoft Ads</option>
+            <option>Multiple Platforms</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Niche</label>
+          <select>
+            <option value="" disabled selected>Select niche...</option>
+            <option>Supplements / Adult Enhancement</option>
+            <option>Crypto / Forex</option>
+            <option>iGaming / Gambling</option>
+            <option>Weight Loss</option>
+            <option>Vape / E-cigarette</option>
+            <option>Cannabis / CBD</option>
+            <option>Peptides</option>
+            <option>Nutraceuticals</option>
+            <option>Other Sensitive Niche</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell Me About Your Situation</label>
+          <textarea rows="4" placeholder="Current issue (banned? rejected? starting fresh?), your geo, monthly budget, and anything else relevant..."></textarea>
+        </div>
+        <button class="btn-gold" style="width:100%;text-align:center;" onclick="submitForm()">Send Message ✦</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">👑 Meerah Andy — Ad Cloaking Specialist</div>
+  <div class="footer-copy">© 2025 · Telegram: @meerahandyx1 · WhatsApp: +237 688 410 938</div>
+</footer>
+
+<div class="toast" id="toast">✦ Message noted — I'll reach out on your preferred channel shortly!</div>
+
+<script>
+function filterNiche(niche, btn) {
+  document.querySelectorAll('.nf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.case-card').forEach(card => {
+    if (niche === 'all' || card.dataset.niche === niche) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function submitForm() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+// Scroll fade-in
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.case-card, .why-card, .tool-badge, .process-step').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
